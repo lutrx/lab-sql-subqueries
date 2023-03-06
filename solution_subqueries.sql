@@ -91,3 +91,9 @@ GROUP BY customer_id
 ORDER BY sum(amount) 
 DESC LIMIT 1)));
 
+-- 8. Customers who spent more than the average payments.
+
+SELECT DISTINCT(customer_id) ,avg(amount) AS amount 
+FROM payment 
+GROUP BY customer_id
+HAVING avg(amount) > (SELECT avg(amount) FROM payment);	
